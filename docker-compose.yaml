@@ -1,0 +1,65 @@
+services:
+  dev:
+    container_name: "dev"
+    build: 
+      context: .  
+      dockerfile: .devcontainer/Dockerfile
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /workspace
+
+  frontend:
+    container_name: "frontend"
+    build: 
+        context: ./frontend
+        dockerfile: ./.devcontainer/Dockerfile
+    tty: true
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /workspace
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    network:
+      - reactini_network
+
+  backend:
+    container_name: "backend"
+    build: 
+        context: ./backend
+        dockerfile: ./.devcontainer/Dockerfile
+    tty: true
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /workspace
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    network:
+      - reactini_network
+
+  db:
+    container_name: ReactTest_DB
+    build: ./database
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/init:/docker-entrypoint-initdb.d
+    network:
+      - reactini_network
+  
+networks:
+  reactini_network:
+    driver: bridge
