@@ -2,8 +2,8 @@ services:
   dev:
     container_name: "dev"
     build: 
-      context: .  
-      dockerfile: .devcontainer/Dockerfile
+      context: ./
+      dockerfile: ./.devcontainer/Dockerfile
     tty: true
     volumes:
       - type: bind
@@ -24,7 +24,7 @@ services:
       - "8080:8080"
     depends_on:
       - backend
-    network:
+    networks:
       - reactini_network
 
   backend:
@@ -41,7 +41,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    network:
+    networks:
       - reactini_network
 
   db:
@@ -53,11 +53,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
     volumes:
       - ./database/init:/docker-entrypoint-initdb.d
-    network:
+    networks:
       - reactini_network
   
 networks:

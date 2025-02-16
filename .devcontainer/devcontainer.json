@@ -1,9 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"service": "backend",
-	"dockerComposeFile": "../../docker-compose.dev.yaml",
+	"service": "dev",
+	"dockerComposeFile": "../docker-compose.dev.yaml",
 	"workspaceFolder": "/workspace"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
