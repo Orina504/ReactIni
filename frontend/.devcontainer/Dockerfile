@@ -1,4 +1,5 @@
 FROM node:18
 
-WORKDIR /WORKSPACE
+WORKDIR /workspace
+COPY package.json ./
 RUN npm install
