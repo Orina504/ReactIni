@@ -1,1 +1,4 @@
 FROM node:18
+
+WORKDIR /WORKSPACE
+RUN npm install
