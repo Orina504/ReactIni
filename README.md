@@ -1,4 +1,5 @@
 # ReactIni
-React(NEXT.js)
-Nest.js
-Postgres
+## 使用フレームワーク
+- React(NEXT.js)
+- Nest.js
+- Postgres
